@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Desktop 1 - Internet
+mkdir -p /tmp/.cache/BraveSoftware
+/usr/bin/vivaldi %U &
+
+# Desktop 2 - Email/Calendar Apps
+/usr/bin/evolution &
+
+# Desktop 3 - Consoles/Terminals
+cd $HOME/bin
+xfce4-terminal --maximize --hide-menubar --hide-borders --hide-toolbar -T "System Log" -e 'journalctl --no-hostname -fxb' --tab -T "Console #1" --tab -T "Console #2" --tab -T "Console #3" &
+
+# Desktop 4 - Financial Apps
+/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=homebank --file-forwarding fr.free.Homebank &
+
+# Desktop 5 - Spreadsheets/Databases
+/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/libreoffice/program/soffice --file-forwarding org.libreoffice.LibreOffice --nologo &
+
+# Desktop 6 - Virtual Machines
+/usr/bin/virt-manager &
+
+# Desktop 7 - Documents/Authoring
+/usr/bin/rednotebook &
+
+# Desktop 8 - Folding@Home
+/usr/bin/FAHControl &
+
+# Desktop 9 - Audio/Video
+/usr/bin/rhythmbox %U &
+
+# Call $HOME/bin/move_desktop
+home="$(echo $HOME)"
+exec "${home}/bin/move_desktop"
+
+#### End start preferred programs ####
+exit
